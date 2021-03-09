@@ -19,6 +19,7 @@
 </head>
 <body>
     <head>
+        <input type="date" id="dat" placeholder="Data"/>
         <input type="number" id="pag" placeholder="Número da página"/>
         <button onclick="buscarDados()"> Buscar</button>
     </head>
@@ -33,15 +34,17 @@
 
 
         //Pegando os itens do HTML para serem usados no código
+        let data = document.getElementById("dat");
         let pagina = document.getElementById("pag");
         let conteudo = document.getElementById("conteudo");
 
         //Função chamada ao clicar o botão
         function buscarDados(){
+
             conteudo.innerHTML = "";//Limpando página antes da busca
 
             //Montando URL
-            const url = `https://comunicaapi.pje.jus.br/api/v1/comunicacao?pagina=${pagina}&itensPorPagina=100&siglaTribunal=TRF3&dataDisponibilizacaoInicio=2021-01-22&dataDisponibilizacaoFim=2021-01-22`;
+            const url = `https://comunicaapi.pje.jus.br/api/v1/comunicacao?pagina=${pagina}&itensPorPagina=100&siglaTribunal=TRF3&dataDisponibilizacaoInicio=${data.value}&dataDisponibilizacaoFim=${data.value}`;
             
             //faz um GET na URL de forma assíncrona
             $.get(url, function(dados_json){
